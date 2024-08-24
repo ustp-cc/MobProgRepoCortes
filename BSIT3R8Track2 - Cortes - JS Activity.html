@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Activity</title>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+    var form = document.createElement('form');
+    form.id = 'registrationForm';
+
+    form.appendChild(document.createElement('br'));
+    var firstNameLabel = document.createElement('label');
+    firstNameLabel.textContent = 'First Name: ';
+    var firstNameInput = document.createElement('input');
+    firstNameInput.type = 'text';
+    firstNameInput.id = 'firstName';
+    firstNameInput.name = 'firstName';
+    firstNameInput.required = true;
+  
+    form.appendChild(firstNameLabel);
+    form.appendChild(firstNameInput);
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    var lastNameLabel = document.createElement('label');
+    lastNameLabel.textContent = 'Last Name: ';
+    var lastNameInput = document.createElement('input');
+    lastNameInput.type = 'text';
+    lastNameInput.id = 'lastName';
+    lastNameInput.name = 'lastName';
+    lastNameInput.required = true;
+
+    form.appendChild(lastNameLabel);
+    form.appendChild(lastNameInput);
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    var emailLabel = document.createElement('label');
+    emailLabel.textContent = 'Email Address: ';
+    var emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.id = 'email';
+    emailInput.name = 'email';
+    emailInput.required = true;
+
+    form.appendChild(emailLabel);
+    form.appendChild(emailInput);
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    var passwordLabel = document.createElement('label');
+    passwordLabel.textContent = 'Password: ';
+    var passwordInput = document.createElement('input');
+    passwordInput.type = 'password';
+    passwordInput.id = 'password';
+    passwordInput.name = 'password';
+    passwordInput.required = true;
+
+    form.appendChild(passwordLabel);
+    form.appendChild(passwordInput);
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    var confirmPasswordLabel = document.createElement('label');
+    confirmPasswordLabel.textContent = 'Confirm Password: ';
+    var confirmPasswordInput = document.createElement('input');
+    confirmPasswordInput.type = 'password';
+    confirmPasswordInput.id = 'confirmPassword';
+    confirmPasswordInput.name = 'confirmPassword';
+    confirmPasswordInput.required = true;
+
+    form.appendChild(confirmPasswordLabel);
+    form.appendChild(confirmPasswordInput);
+    form.appendChild(document.createElement('br'));
+    form.appendChild(document.createElement('br'));
+
+    var registerButton = document.createElement('button');
+    registerButton.type = 'submit';
+    registerButton.textContent = 'Register';
+
+    form.appendChild(registerButton);
+
+    var emailWarning = document.createElement('p');
+    emailWarning.id = 'emailWarning';
+    emailWarning.style.color = 'red';
+    emailWarning.style.display = 'none';
+    emailWarning.textContent = 'Please enter a valid email address.';
+
+    document.getElementById('app').appendChild(form);
+    document.getElementById('app').appendChild(emailWarning);
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var firstName = document.getElementById('firstName').value;
+        var lastName = document.getElementById('lastName').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        var emailRegex = /^[^\s@]+@[^\s@]+\.(com|[a-zA-Z]+)$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailWarning').style.display = 'block';
+            return;
+        } else {
+            document.getElementById('emailWarning').style.display = 'none';
+        }
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+        return;
+        }
+
+        console.log('First Name: ', firstName);
+        console.log('Last Name: ', lastName);
+        console.log('Email: ', email);
+        console.log('Password: ', password);
+
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
